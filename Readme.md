@@ -183,6 +183,3 @@ Quality metrics:
 MIT License — Free to use, modify, and distribute.
 
 ---
-
-**Built with ❤️ for C programming mastery**  
-_Start with Day 1 and master C through practical calculator development!_
