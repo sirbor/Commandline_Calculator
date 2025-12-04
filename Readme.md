@@ -32,27 +32,6 @@ A **production-grade CLI calculator** built over **30 days** that demonstrates *
 | **Financial**   | `financial npv -1000 500 600`     | Loops, precision         |
 | **Extra**       | `extra save data.txt`             | File I/O, signals        |
 
-## 📚 30-Day Learning Roadmap
-
-## 30-Day Learning Roadmap
-
-- **Week 1: Foundations**  
-  → CLI + basic arithmetic
-
-- **Week 2: Intermediate**  
-  → Pointers + data structures
-
-- **Week 3: Core Features**  
-  → Files + dynamic arrays
-
-- **Week 4: Advanced**  
-  → Trees + system programming
-
-- **Days 29-30: Integration**  
-  → Full production calculator
-
-Each day maps files → C concepts → testable milestones.
-
 ## 🏗️ Project Structure
 
 Commandline_Calculator/
@@ -81,7 +60,44 @@ Commandline_Calculator/
  ├── utils.[hc] # Logging, formatting  
  └── signals.[hc] # Ctrl+C handling
 
+## 📈 30-Day Detailed Roadmap
+
+| Day    | Focus                 | Concepts Covered                                 | Files Created/Updated                 |
+| ------ | --------------------- | ------------------------------------------------ | ------------------------------------- |
+| **1**  | CLI Foundation        | Preprocessor, I/O, main(), strings, control flow | `Makefile`, `common.h`, `main.c`      |
+| **2**  | Basic Syntax          | Data types, variables, constants, scope          | `common.h` (enhanced)                 |
+| **3**  | Input Mastery         | printf/scanf formats, fgets, escape sequences    | `utils/utils.[hc]`                    |
+| **4**  | Operators             | Arithmetic, relational, precedence, assignment   | `ops/basic_ops.[hc]`                  |
+| **5**  | Control Flow          | if/switch, loops (for/while/do), break/continue  | `command_handler.[hc]`                |
+| **6**  | Functions             | Declaration, parameters, return types            | `evaluation.[hc]`                     |
+| **7**  | Arrays/Strings        | 1D arrays, string.h, strtok/sscanf               | `evaluation.c` (complete)             |
+| **8**  | Recursion             | Recursive functions, factorial                   | `ops/scientific_ops.[hc]`             |
+| **9**  | Arrays Advanced       | 2D arrays, initialization, multi-dim             | `ops/statistical_ops.[hc]`            |
+| **10** | Strings Complete      | char\* vs arrays, strlen/strcpy                  | `utils/utils.c` (enhanced)            |
+| **11** | Pointer Basics        | &/\* operators, dereference, basics              | `data_structs/linked_list.[hc]`       |
+| **12** | Pointer Arithmetic    | ptr++, sizeof, array-pointer decay               | `linked_list.c` (ops)                 |
+| **13** | Dynamic Memory        | malloc/calloc/free basics                        | `initialization.[hc]`, `cleanup.[hc]` |
+| **14** | Memory Management     | Memory leaks prevention, cleanup                 | `ops/memory_ops.[hc]`                 |
+| **15** | Structures            | struct definition, access (.->)                  | `common.h` (Complex struct)           |
+| **16** | Nested Structs        | typedef, nested structures                       | `data_structs/stack.[hc]`             |
+| **17** | Unions/Storage        | union, static/auto/extern/register               | `common.h` (DataUnion)                |
+| **18** | File Basics           | fopen/fclose, fprintf/fscanf                     | `utils/utils.c` (logging)             |
+| **19** | Binary Files          | fread/fwrite, binary mode                        | `ops/extra_ops.[hc]`                  |
+| **20** | Dynamic Arrays        | realloc, capacity vs size                        | `statistical_ops.c` (dynamic)         |
+| **21** | File Error Handling   | ferror/feof, robust I/O                          | `extra_ops.c` (complete)              |
+| **22** | Double Pointers       | \*\*Node, pointer to pointer                     | `data_structs/bst.[hc]`               |
+| **23** | Function Pointers     | typedef (\*Func), dispatch tables                | `command_handler.c` (table)           |
+| **24** | Bit Manipulation      | & \| ^ ~ << >>, flags/masks                      | `ops/converter_ops.[hc]`              |
+| **25** | Preprocessor Advanced | #ifdef/#pragma, variadic macros                  | `common.h` (complete)                 |
+| **26** | Stacks/Queues         | LIFO/FIFO, array+linked impl                     | `data_structs/queue.[hc]`             |
+| **27** | Trees/BST             | Recursion, inorder traversal                     | `bst.c` (complete), `memory_ops.c`    |
+| **28** | Graphs Intro          | Adjacency lists, \*\*\*adj                       | `data_structs/graph.[hc]`             |
+| **29** | Multifile/Makefiles   | extern, .o dependencies, linking                 | `Makefile` (advanced)                 |
+| **30** | Integration/Debug     | valgrind, gdb, signals, full test                | `utils/signals.[hc]`, all ops/        |
+
 ## 🛠️ Setup & Build
+
+```
 
 Clone & enter project
 git clone <repo> Commandline_Calculator
@@ -98,6 +114,8 @@ make valgrind
 
 Clean build files
 make clean
+
+```
 
 **Requirements:**
 
@@ -130,6 +148,8 @@ Every file contains inline comments like:
 
 ## 🧪 Testing & Quality
 
+```
+
 Check memory leaks with valgrind
 make valgrind
 
@@ -142,22 +162,14 @@ gdb ./calculator
 Format code consistently
 make format
 
+```
+
 Quality metrics:
 
 - ✅ Zero compiler warnings (`-Wall -Wextra -Wpedantic`)
 - ✅ Zero memory leaks (valgrind clean)
 - ✅ Signals handled gracefully (Ctrl+C)
 - ✅ Professional CLI with colored output, history, error handling
-
-## 📈 Progress Tracking
-
-| Day | Milestone         | Files Added                      | Concepts                       |
-| --- | ----------------- | -------------------------------- | ------------------------------ |
-| 1   | CLI Foundation    | `main.c`, `common.h`, `Makefile` | 25+ beginner concepts          |
-| 7   | Basic Arithmetic  | `basic_ops.[hc]`                 | Operators complete             |
-| 14  | Data Structures   | `linked_list.[hc]`               | Pointers + dynamic memory      |
-| 21  | File I/O Complete | `extra_ops.[hc]`                 | Binary/text files              |
-| 30  | FULL PRODUCTION   | All ~40 files                    | **All C concepts implemented** |
 
 ## 🤝 Contributing
 
