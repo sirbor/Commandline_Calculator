@@ -56,29 +56,29 @@ Each day maps files → C concepts → testable milestones.
 ## 🏗️ Project Structure
 
 Commandline_Calculator/
-├── Makefile # Industrial build system
-├── README.md # 📄 This file
-├── common.h # Macros, structs, enums
-├── main.c # CLI entry point
-├── command_handler.[hc] # Command dispatch
-├── evaluation.[hc] # Expression parsing
-├── initialization.[hc] # Memory setup
-├── cleanup.[hc] # Memory cleanup
-│
-├── ops/ # 12 Feature Categories
-│ ├── basic_ops.[hc] # Day 4: add/sub/mul/div
-│ ├── scientific_ops.[hc] # Day 8: sin/cos/factorial
-│ └── ... (10 more)
-│
-├── data_structs/ # Advanced Data Structures
-│ ├── linked_list.[hc] # Day 11: Pointers
-│ ├── stack.[hc] # Day 26: LIFO
-│ ├── bst.[hc] # Day 27: Trees
-│ └── graph.[hc] # Day 28: Graphs
-│
-└── utils/ # Utilities
-├── utils.[hc] # Logging, formatting
-└── signals.[hc] # Ctrl+C handling
+├── Makefile # Industrial build system  
+├── README.md # 📄 This file  
+├── common.h # Macros, structs, enums  
+├── main.c # CLI entry point  
+├── command_handler.[hc] # Command dispatch  
+├── evaluation.[hc] # Expression parsing  
+├── initialization.[hc] # Memory setup  
+├── cleanup.[hc] # Memory cleanup  
+│  
+├── ops/ # 12 Feature Categories  
+│ ├── basic_ops.[hc] # Day 4: add/sub/mul/div  
+│ ├── scientific_ops.[hc] # Day 8: sin/cos/factorial  
+│ └── ... (10 more)  
+│  
+├── data_structs/ # Advanced Data Structures  
+│ ├── linked_list.[hc] # Day 11: Pointers  
+│ ├── stack.[hc] # Day 26: LIFO  
+│ ├── bst.[hc] # Day 27: Trees  
+│ └── graph.[hc] # Day 28: Graphs  
+│  
+└── utils/ # Utilities  
+ ├── utils.[hc] # Logging, formatting  
+ └── signals.[hc] # Ctrl+C handling
 
 ## 🛠️ Setup & Build
 
