@@ -56,6 +56,7 @@ Each day maps files → C concepts → testable milestones.
 ## 🏗️ Project Structure
 
 Commandline_Calculator/
+
 ├── Makefile # Industrial build system  
 ├── README.md # 📄 This file  
 ├── common.h # Macros, structs, enums  
