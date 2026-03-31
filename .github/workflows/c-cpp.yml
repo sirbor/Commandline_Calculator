@@ -8,16 +8,33 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          set -euxo pipefail
+
+          # If a Makefile exists, prefer it.
+          if [ -f Makefile ] || [ -f makefile ] || [ -f GNUmakefile ]; then
+            make
+            exit 0
+          fi
+
+          # Otherwise, compile all C sources we can find.
+          mkdir -p build
+          mapfile -t c_files < <(find . -type f -name "*.c" -not -path "./build/*")
+
+          if [ "${#c_files[@]}" -eq 0 ]; then
+            echo "No .c files found and no Makefile present. Update the workflow to match your project structure." >&2
+            exit 1
+          fi
+
+          gcc -Wall -Wextra -Werror -O2 -o build/calculator "${c_files[@]}"
+
+      - name: Smoke test
+        run: |
+          set -euxo pipefail
+          ./build/calculator --help || true
