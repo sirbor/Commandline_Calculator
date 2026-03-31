@@ -19,6 +19,7 @@ jobs:
 
           # If a Makefile exists, prefer it.
           if [ -f Makefile ] || [ -f makefile ] || [ -f GNUmakefile ]; then
+            make clean
             make
             exit 0
           fi
