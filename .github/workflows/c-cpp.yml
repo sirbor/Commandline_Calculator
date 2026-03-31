@@ -32,9 +32,27 @@ jobs:
             exit 1
           fi
 
-          gcc -Wall -Wextra -Werror -O2 -o build/calculator "${c_files[@]}"
+          gcc -Wall -Wextra -Werror -O2 -I. -o build/calculator "${c_files[@]}" -lm
 
       - name: Smoke test
         run: |
           set -euxo pipefail
-          ./build/calculator --help || true
+          if [ -f ./calculator ]; then
+            EXECUTABLE="./calculator"
+          elif [ -f ./build/calculator ]; then
+            EXECUTABLE="./build/calculator"
+          else
+            echo "Calculator executable not found."
+            exit 1
+          fi
+          
+          echo "Testing 'help' command..."
+          echo "help" | "$EXECUTABLE"
+          
+          echo "Testing 'basic add 5 3'..."
+          RESULT=$(echo "basic add 5 3" | "$EXECUTABLE" | grep "8.00" || true)
+          if [ -z "$RESULT" ]; then
+            echo "Basic calculation failed!"
+            exit 1
+          fi
+          echo "Smoke test passed!"
