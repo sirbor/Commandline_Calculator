@@ -6,4 +6,11 @@
 // CONCEPT: File I/O (Extra category - Day 18/19/21)
 CalculationResult extra_save_result(double val, const char *filename);
 
+// CONCEPT: Binary file I/O (Day 19)
+CalculationResult extra_save_binary(double *data, int n, const char *filename);
+CalculationResult extra_load_binary(double *data, int max_n, const char *filename, int *out_n);
+
+// CONCEPT: File error handling (Day 21)
+CalculationResult extra_load_data(const char *filename);
+
 #endif // EXTRA_OPS_H

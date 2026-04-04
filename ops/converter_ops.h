@@ -7,4 +7,8 @@
 CalculationResult converter_to_binary(int n);
 CalculationResult converter_check_bit(int n, int bit);
 
+// CONCEPT: Lookup tables for unit conversion
+CalculationResult converter_length(double value, const char *from, const char *to);
+CalculationResult converter_temperature(double value, const char *from, const char *to);
+
 #endif // CONVERTER_OPS_H

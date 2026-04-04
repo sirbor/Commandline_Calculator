@@ -6,11 +6,6 @@ CalculationResult converter_to_binary(int n) {
     CalculationResult res;
     res.is_error = false;
     strcpy(res.err_message, "");
-    
-    // We'll store the binary representation as a number for simplicity of print_result,
-    // though usually it's a string. Let's just return 1 if we want to show it works.
-    // Actually, let's use value to store the bit count or something.
-    // Or just implement check_bit as the primary bitwise concept.
     res.value = (double)n; 
     return res;
 }
@@ -28,5 +23,83 @@ CalculationResult converter_check_bit(int n, int bit) {
         res.is_error = false;
         strcpy(res.err_message, "");
     }
+    return res;
+}
+
+// CONCEPT: Lookup table for length conversion factors (to meters)
+typedef struct {
+    const char *unit;
+    double to_meter;
+} LengthUnit;
+
+static LengthUnit length_table[] = {
+    {"m", 1.0},
+    {"cm", 0.01},
+    {"mm", 0.001},
+    {"km", 1000.0},
+    {"in", 0.0254},
+    {"ft", 0.3048},
+    {"yd", 0.9144},
+    {"mi", 1609.344},
+    {NULL, 0.0}
+};
+
+// CONCEPT: Table lookup for unit conversion
+static double get_length_factor(const char *unit) {
+    for (int i = 0; length_table[i].unit != NULL; i++) {
+        if (strcmp(length_table[i].unit, unit) == 0) {
+            return length_table[i].to_meter;
+        }
+    }
+    return -1.0; // Not found
+}
+
+CalculationResult converter_length(double value, const char *from, const char *to) {
+    CalculationResult res = {0.0, false, ""};
+    
+    double from_factor = get_length_factor(from);
+    double to_factor = get_length_factor(to);
+    
+    if (from_factor < 0 || to_factor < 0) {
+        res.is_error = true;
+        strcpy(res.err_message, "Unknown unit. Use: m, cm, mm, km, in, ft, yd, mi");
+        return res;
+    }
+    
+    // Convert: value * from_factor gives meters, then divide by to_factor
+    res.value = value * from_factor / to_factor;
+    return res;
+}
+
+// CONCEPT: Temperature conversion (non-linear)
+CalculationResult converter_temperature(double value, const char *from, const char *to) {
+    CalculationResult res = {0.0, false, ""};
+    double celsius;
+    
+    // Convert to Celsius first
+    if (strcmp(from, "C") == 0) {
+        celsius = value;
+    } else if (strcmp(from, "F") == 0) {
+        celsius = (value - 32.0) * 5.0 / 9.0;
+    } else if (strcmp(from, "K") == 0) {
+        celsius = value - 273.15;
+    } else {
+        res.is_error = true;
+        strcpy(res.err_message, "Unknown unit. Use: C, F, K");
+        return res;
+    }
+    
+    // Convert from Celsius to target
+    if (strcmp(to, "C") == 0) {
+        res.value = celsius;
+    } else if (strcmp(to, "F") == 0) {
+        res.value = celsius * 9.0 / 5.0 + 32.0;
+    } else if (strcmp(to, "K") == 0) {
+        res.value = celsius + 273.15;
+    } else {
+        res.is_error = true;
+        strcpy(res.err_message, "Unknown unit. Use: C, F, K");
+    }
+    
     return res;
 }

@@ -17,12 +17,46 @@
 #define COLOR_YELLOW "\033[0;33m"
 #define COLOR_RESET  "\033[0m"
 
+// CONCEPT: Variadic macros (Day 25)
+#ifdef DEBUG
+#define DEBUG_PRINT(fmt, ...) fprintf(stderr, "[DEBUG] " fmt "\n", ##__VA_ARGS__)
+#else
+#define DEBUG_PRINT(fmt, ...) ((void)0)
+#endif
+
 // CONCEPT: Structures - encapsulation of related data
 typedef struct {
     double value;
     bool is_error;
     char err_message[MAX_ERR_LEN];
 } CalculationResult;
+
+// CONCEPT: Complex number structure (Day 15)
+typedef struct {
+    double real;
+    double imag;
+} Complex;
+
+// CONCEPT: Union - different types sharing same memory (Day 17)
+typedef union {
+    int i;
+    double d;
+    char c;
+    Complex z;
+} DataUnion;
+
+// CONCEPT: Tagged union pattern for type-safe unions
+typedef enum {
+    DATA_INT,
+    DATA_DOUBLE,
+    DATA_CHAR,
+    DATA_COMPLEX
+} DataType;
+
+typedef struct {
+    DataType type;
+    DataUnion data;
+} TaggedData;
 
 // CONCEPT: Enumerations - readable symbolic constants
 typedef enum {

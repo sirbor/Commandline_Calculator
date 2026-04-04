@@ -14,7 +14,7 @@ TARGET = calculator
 
 # CONCEPT: Object file compilation for separate translation units
 # We will add more object files as we develop the modules
-OBJS = main.o command_handler.o ops/basic_ops.o ops/scientific_ops.o ops/memory_ops.o ops/statistical_ops.o ops/converter_ops.o ops/graphical_ops.o ops/calculus_ops.o ops/solver_ops.o ops/extra_ops.o evaluation.o data_structs/linked_list.o data_structs/stack.o initialization.o cleanup.o utils/utils.o utils/signals.o
+OBJS = main.o command_handler.o ops/basic_ops.o ops/scientific_ops.o ops/memory_ops.o ops/statistical_ops.o ops/converter_ops.o ops/graphical_ops.o ops/calculus_ops.o ops/solver_ops.o ops/extra_ops.o ops/complex_ops.o ops/financial_ops.o ops/programming_ops.o evaluation.o data_structs/linked_list.o data_structs/stack.o data_structs/bst.o data_structs/queue.o data_structs/graph.o initialization.o cleanup.o utils/utils.o utils/signals.o
 
 # Default rule
 all: $(TARGET)

@@ -18,22 +18,31 @@ void log_success(const char *message) {
 
 // CONCEPT: String manipulation - removing leading and trailing whitespace
 void trim_whitespace(char *str) {
-    if (str == NULL) return;
+    if (str == NULL || *str == '\0') return;
     
     // CONCEPT: Pointers and string termination
+    char *start = str;
     char *end;
     
-    // Trim leading space
-    while(isspace((unsigned char)*str)) str++;
+    // Find first non-whitespace character
+    while (isspace((unsigned char)*start)) start++;
     
-    if(*str == 0) return; // All spaces
+    if (*start == '\0') {
+        // String was all whitespace
+        *str = '\0';
+        return;
+    }
     
-    // Trim trailing space
-    end = str + strlen(str) - 1;
-    while(end > str && isspace((unsigned char)*end)) end--;
+    // Find last non-whitespace character
+    end = start + strlen(start) - 1;
+    while (end > start && isspace((unsigned char)*end)) end--;
     
-    // Write new null terminator
-    *(end + 1) = 0;
+    // Calculate length and move trimmed string to beginning
+    size_t len = (size_t)(end - start + 1);
+    if (start != str) {
+        memmove(str, start, len);
+    }
+    str[len] = '\0';
 }
 
 // CONCEPT: Formatted printing of CalculationResult structure
