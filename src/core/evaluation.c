@@ -8,6 +8,9 @@
 
 // CONCEPT: Recursive descent parser for mathematical expressions
 
+#define CONST_PI 3.14159265358979323846
+#define CONST_E 2.71828182845904523536
+
 typedef struct {
     bool has_error;
     char message[MAX_ERR_LEN];
@@ -75,7 +78,7 @@ static double parse_primary(const char **s, double x, EvalState *state) {
     }
     
     // Mathematical constants - must check longer strings first
-    if (match(s, "pi")) return M_PI;
+    if (match(s, "pi")) return CONST_PI;
     
     // Functions - check exp BEFORE checking 'e' constant
     if (match(s, "exp(")) {
@@ -88,7 +91,7 @@ static double parse_primary(const char **s, double x, EvalState *state) {
     // Now check 'e' constant (after exp)
     if (**s == 'e' && !isalpha((unsigned char)(*s)[1])) {
         (*s)++;
-        return M_E;
+        return CONST_E;
     }
     
     // Other functions
