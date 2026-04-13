@@ -2,7 +2,7 @@
 #include "utils/utils.h"
 #include "common.h"
 #include <stdio.h>
-#include <unistd.h>
+#include <time.h>
 
 static void print_progress_bar(int step, int total) {
     printf("\r  %s", COLOR_TEAL);
@@ -14,6 +14,13 @@ static void print_progress_bar(int step, int total) {
     fflush(stdout);
 }
 
+static void sleep_milliseconds(long milliseconds) {
+    struct timespec req;
+    req.tv_sec = milliseconds / 1000;
+    req.tv_nsec = (milliseconds % 1000) * 1000000L;
+    nanosleep(&req, NULL);
+}
+
 void initialize_calculator(void) {
     printf("\n");
     
@@ -23,7 +30,7 @@ void initialize_calculator(void) {
         print_progress_bar(i + 1, 3);
         printf("%s%s%s", STYLE_DIM, steps[i], COLOR_RESET);
         fflush(stdout);
-        usleep(80000);
+        sleep_milliseconds(80);
     }
     printf("\n\n");
 }
