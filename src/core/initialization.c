@@ -15,10 +15,11 @@ static void print_progress_bar(int step, int total) {
 }
 
 static void sleep_milliseconds(long milliseconds) {
-    struct timespec req;
-    req.tv_sec = milliseconds / 1000;
-    req.tv_nsec = (milliseconds % 1000) * 1000000L;
-    nanosleep(&req, NULL);
+    clock_t start = clock();
+    double seconds = (double)milliseconds / 1000.0;
+    while (((double)(clock() - start) / (double)CLOCKS_PER_SEC) < seconds) {
+        // Busy-wait fallback for strict C99 portability.
+    }
 }
 
 void initialize_calculator(void) {
