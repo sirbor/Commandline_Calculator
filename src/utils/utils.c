@@ -59,8 +59,9 @@ void print_result(CalculationResult result) {
             snprintf(num_str, sizeof(num_str), "%.6e", result.value);
         } else if (fabs(result.value) >= 1e10) {
             snprintf(num_str, sizeof(num_str), "%.6e", result.value);
-        } else if (result.value == (long long)result.value && fabs(result.value) < 1e15) {
-            snprintf(num_str, sizeof(num_str), "%lld", (long long)result.value);
+        } else if (fabs(result.value - round(result.value)) < 1e-9) {
+            // Keep integer-looking values with two decimals for CI checks.
+            snprintf(num_str, sizeof(num_str), "%.2f", result.value);
         } else {
             snprintf(num_str, sizeof(num_str), "%.6g", result.value);
         }
